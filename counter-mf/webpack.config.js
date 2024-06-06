@@ -4,7 +4,7 @@ const { VueLoaderPlugin } = require("vue-loader");
 const Dotenv = require('dotenv-webpack');
 module.exports = (_, argv) => ({
   output: {
-    publicPath: "http://localhost:3000/",
+    publicPath: "http://localhost:3002/",
   },
 
   resolve: {
@@ -12,7 +12,7 @@ module.exports = (_, argv) => ({
   },
 
   devServer: {
-    port: 3000,
+    port: 3002,
     historyApiFallback: true,
   },
 
@@ -46,13 +46,12 @@ module.exports = (_, argv) => ({
   plugins: [
     new VueLoaderPlugin(),
     new ModuleFederationPlugin({
-      name: "host",
+      name: "counter_mf",
       filename: "remoteEntry.js",
-      remotes: {
-        navbar: "navbar@http://localhost:3001/remoteEntry.js",
-        counter: "counter_mf@http://localhost:3002/remoteEntry.js"
+      remotes: {},
+      exposes: {
+        "./Counter": "./src/components/Counter.vue"
       },
-      exposes: {},
       shared: require("./package.json").dependencies,
     }),
     new HtmlWebPackPlugin({

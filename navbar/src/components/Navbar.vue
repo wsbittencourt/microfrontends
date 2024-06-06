@@ -3,7 +3,7 @@
 
 <template>
   <nav>
-    <h3>Navbar 2</h3>
+    <h1>Estudos Microfrontends</h1>
   </nav>
 </template>
 
